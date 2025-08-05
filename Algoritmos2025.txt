@@ -1,2 +1,34 @@
 Proyecto Semestral: Gestor de Notas Académicas
 
+FASE 01 04/08/2025
+
+Después de revisar el documento del proyecto Gestor de Notas Académicas,
+la idea principal es desarrollar un programa desde la consola, usando Python 
+para que un estudiante pueda organizar, consultar y modificar sus notas de los cursos que ha llevado.
+
+El sistemas busca simular cómo funciona un Gestor de notas, permitiendo que el estudiante guarde sus calificaciones, las revise, calcule su promedio y vea cuántas  materias ha pasado o reprobado.
+
+
+Requisitos del sistema.
+
+Todo debe estar hecho en consola, sin interfaces gráficas, sin ventanas 
+El sistema debe estar dividido por funciones, es decir cada parte del programa debe estar organizada para que haga una tarea especifica. 
+3. debe haber validaciones, no se puede aceptar cualquier dato. por ejemplo una nota solo puede estar entre 0 y 100 
+4. El menú debe ser interactivo y repetitivo, es decir que el usuario pueda hacer varias cosas seguidas hasta que elija salir
+5. se deben aplicar las estructuras vistas en clases.
+6. El código debe estar comentado y ordenado, para que se entienda fácilmente lo que hace cada parte.
+7. El sistema debe mostrar mensaje claros al usuario, para que sea fácil de usar.
+
+Menú del sistema lo que puede hacer el usuario 
+
+El menú principal será lo que el usuario verá cuando use el programa. Después
+ahí podrá elegir que acción quiere realizar. Estas son las opciones que debe tener:
+
+Registrar un nuevo curso con su nota 
+ver la lista de todos los cursos registrados 
+calcular el promedio general de las notas 
+ver cuantos cursos están aprobado o reprobados 
+buscar un curso por su nombre 
+cambiar la nota de un curso 
+eliminar un curso de la lista 
+ordena los cursos 

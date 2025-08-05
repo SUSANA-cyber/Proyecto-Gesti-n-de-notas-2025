@@ -1,3 +1,2 @@
-Proyecto Algoritmos "B"
+Proyecto Semestral: Gestor de Notas Académicas
 
-2025

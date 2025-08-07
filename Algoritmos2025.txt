@@ -2,33 +2,109 @@ Proyecto Semestral: Gestor de Notas Académicas
 
 FASE 01 04/08/2025
 
-Después de revisar el documento del proyecto Gestor de Notas Académicas,
-la idea principal es desarrollar un programa desde la consola, usando Python 
-para que un estudiante pueda organizar, consultar y modificar sus notas de los cursos que ha llevado.
 
-El sistemas busca simular cómo funciona un Gestor de notas, permitiendo que el estudiante guarde sus calificaciones, las revise, calcule su promedio y vea cuántas  materias ha pasado o reprobado.
+             Gestor de Notas Académicas 
 
 
-Requisitos del sistema.
+Descripción 
 
-Todo debe estar hecho en consola, sin interfaces gráficas, sin ventanas 
-El sistema debe estar dividido por funciones, es decir cada parte del programa debe estar organizada para que haga una tarea especifica. 
-3. debe haber validaciones, no se puede aceptar cualquier dato. por ejemplo una nota solo puede estar entre 0 y 100 
-4. El menú debe ser interactivo y repetitivo, es decir que el usuario pueda hacer varias cosas seguidas hasta que elija salir
-5. se deben aplicar las estructuras vistas en clases.
-6. El código debe estar comentado y ordenado, para que se entienda fácilmente lo que hace cada parte.
-7. El sistema debe mostrar mensaje claros al usuario, para que sea fácil de usar.
 
-Menú del sistema lo que puede hacer el usuario 
+El proyecto Gestor de Notas es un sistema que permite a los estudiantes llevar un control detallado de sus calificaciones de forma sencilla y organizada. Este sistema funcionará en consola y está diseñado para registrar, visualizar, modificar, eliminar, buscar y analizar las notas obtenidas en distintos cursos. 
 
-El menú principal será lo que el usuario verá cuando use el programa. Después
-ahí podrá elegir que acción quiere realizar. Estas son las opciones que debe tener:
 
-Registrar un nuevo curso con su nota 
-ver la lista de todos los cursos registrados 
-calcular el promedio general de las notas 
-ver cuantos cursos están aprobado o reprobados 
-buscar un curso por su nombre 
-cambiar la nota de un curso 
-eliminar un curso de la lista 
-ordena los cursos 
+Este programa está diseñado para estudiantes que necesitan una herramienta básica pero completa para tener un control eficiente de sus calificaciones, además incluye funcionalidades como el cálculo de promedios y  la identificación de cursos aprobados y reprobados. 
+
+
+Además de ser útil en la práctica, este programa es una buena oportunidad para poner en práctica hábitos importantes al programar, como organizar el código en funciones claras, validar correctamente lo que ingrese el usuario y usar repeticiones de forma eficiente. Todo se desarrollara en consola 
+
+
+Requisitos del sistema 
+ 
+Funcionales 
+
+
+* Registrar un nuevo curso y su nota 
+* Mostrar todos los cursos registrados con su respectiva nota 
+* Calcular el promedio general de todas las notas ingresadas 
+* Contar cuántos cursos han sido aprobados y cuántos reprobados 
+* Buscar un curso por su nombre 
+* Actualizar las notas del curso
+* Eliminar un curso registrado 
+
+
+No funcionales 
+
+
+
+
+* El lenguaje de programación para desarrollar el proyecto es Python 
+* El programa se ejecuta en consola 
+* No tiene interfaces gráficas 
+* No requiere librerías externas 
+* Debe de estar diseñadas con bucles y condicionales 
+* Debe de estructurarse en Pseudocódigo para la planificación inicial 
+
+
+
+
+
+
+INICIO 
+
+
+ Menú <- verdadero 
+
+
+Mientras Menú Hacer 
+
+
+IMPRIMIR “ Menu principal “
+ 
+IMPRIMIR “1 agregar curso y nota”
+ 
+IMPRIMIR “2 ver cursos guardados”
+ 
+IMPRIMIR “3 calcular promedio”
+  
+IMPRIMIR “4 ver cuantos cursos estan aprobados y cuantos estan reprobados”
+ 
+IMPRIMIR “5 buscar curso por nombre ”
+ 
+IMPRIMIR “6 modificar nota de los cursos”
+ 
+IMPRIMIR “7 salir”
+
+
+LEER opciones 
+
+
+SI opciones == 1 entonces 
+<agregar curso>
+SINO SI opciones == 2 entonces 
+<ver cursos guardados>
+SINO SI opciones == 3 entonces 
+<calcular promedio>
+SINO SI opciones == 4 entonces 
+<mostrar cursos aprobados y reprobados>
+SINO SI opciones == 5 entonces
+<buscar curso>
+SINO SI opciones == 6 entonces 
+<modificar nota>
+SINO SI opciones == 7 entonces 
+
+
+IMPRIMIR “Salir”
+
+
+opciones <- FALSO 
+SINO 
+IMPRIMIR “esa opcion no es valida ”
+
+
+FIN SI 
+
+
+FIN MIENTRAS 
+
+
+FIN

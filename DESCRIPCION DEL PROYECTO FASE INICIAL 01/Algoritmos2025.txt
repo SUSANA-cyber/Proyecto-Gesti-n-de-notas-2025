@@ -45,7 +45,7 @@ No funcionales
 * Debe de estructurarse en Pseudocódigo para la planificación inicial 
 
 
-
+Pseudocódigo
 
 
 

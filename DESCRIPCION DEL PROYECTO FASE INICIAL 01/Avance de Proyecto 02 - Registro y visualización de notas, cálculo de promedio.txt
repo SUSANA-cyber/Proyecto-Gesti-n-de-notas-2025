@@ -1,0 +1,94 @@
+Avance de Proyecto 02 - Registro y visualización de notas, cálculo de promedio
+
+
+INICIO
+
+Notas <- []
+
+IMPRIMIR "ingrese una nota"
+
+MINETRAS VERDADERO HACER 
+IMPRIMIR "Ingrese una nota"
+LEER ENTRADA
+
+SI ENTRADA = "FIN" ENTONCES 
+
+SALIR DEL CICLO
+
+FIN SI
+
+SI ENTRADA esta vacia ENTONCES 
+
+IMPRIMIR "Error la nota no puede estar vacia"
+
+CONTUANAR 
+
+FIN SI
+
+SI tipo (entrada) != Numerico ENTONCES 
+
+IMPRIMIR "Error solo se aceptan valores numericos"
+
+CONTINUAR
+
+FIN SI 
+
+SI nota < 0 o nota > 100 ENTONCES
+
+IMPRIMIR "Error la nota debe estar entre 0 y 100"
+
+CONTINUAR
+
+FIN SI
+
+AGREGAR nota por nota 
+
+IMPRIMIR "Nota registrada con exito"
+
+FIN MIENTRAS
+
+
+SI cantidad de elementos en notas = 0 ENTONCES 
+
+IMPRIMIR "No se registraron notas. no es posible calcular promedio"
+
+SINO 
+
+suma <- 0
+PARA cada nota en notas HACER
+suma <- suma + nota 
+
+FIN PARA
+
+PROMEDIO <- suma / cantidad de elementos en notas 
+
+IMPRIMIR "El promedio de las notas es ", PROMEDIO
+
+FIN SI 
+
+FIN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

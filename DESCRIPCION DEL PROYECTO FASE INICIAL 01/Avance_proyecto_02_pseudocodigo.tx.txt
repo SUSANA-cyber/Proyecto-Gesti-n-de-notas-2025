@@ -41,7 +41,7 @@ CONTINUAR
 
 FIN SI
 
-AGREGAR nota por nota 
+AGREGAR nota a nota 
 
 IMPRIMIR "Nota registrada con exito"
 

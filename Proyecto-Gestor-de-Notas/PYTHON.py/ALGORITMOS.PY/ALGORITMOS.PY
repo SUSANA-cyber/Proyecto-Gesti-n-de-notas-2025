@@ -109,14 +109,14 @@ Actualizar_nota()
 
 def menu(): 
     while True:
-        print("\n=======GESTOR DE NOTAS ACADEMICAS 2025======")
-        print("OPCIÒN1. REGISTRAR NUEVO CURSO")
+        print("GESTOR DE NOTAS ACADEMICAS 2025")
+        print("OPCIÒN 1. REGISTRAR NUEVO CURSO")
         print("OPCIÒN 2. MOSTRAR TODOS LOS CURSOS Y NOTAS")  
         print("OPCIÒN 3. CALCULAR PROMEDIO GENERAL")
         print("OPCIÒN 4. CONTAR CURSOS APROBADOS Y REPROBADOS")
         #Aqui se hace la busqueda linal en buscar curso por nombre
         print("OPCIÒN 5. BUSCAR CURSOS POR NOMBRE")   
-        
+
     
 
 

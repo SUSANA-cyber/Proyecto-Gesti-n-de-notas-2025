@@ -106,7 +106,7 @@ Buscar_nota()
 #paso 5 Actualizar nota
 Actualizar_nota()
 
-
+notas ==
                   
 
             

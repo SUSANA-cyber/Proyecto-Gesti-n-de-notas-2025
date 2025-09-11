@@ -1,5 +1,7 @@
 Notas = []
 
+#lista global de notas
+Notas = []
 #PROCEDIMIENTO
 
 #pide al usuario ingresar notas hasta que escribs fin que validaciones aplica
@@ -70,9 +72,9 @@ def Actualizar_nota():
         indice = input(f"ingrese el indice de la nota a actualizar (0 a {len(Notas)-1}): ")
                     
         if indice.isdigit():
-            indice = int(indice)
+            indice = int(indice)89
             if 0 <= indice < len(Notas):
-                nueva = input("ingrese la nota 0 a 100")
+                nueva = input("ingrese la nota 0 a 100: " )
                 if nueva.isdigit():
                    nueva = int(nueva)
                    if 0 <= nueva <= 100:
@@ -87,6 +89,25 @@ def Actualizar_nota():
                 print("Error indice fuera de rango")
         else: 
             print("Error el indice debe ser un numero")
+        
+
+#eliminar notas de la lista usando su indice
+def Eliminar_nota():
+    if not Notas: #lista vacia
+        print("NO HAY NOTAS REGISTRADAS PARA ELIMINAR")
+        return
+    
+    indice = input(f"INGRESE EL INDICE DE LA NOTA A ELIMINAR (0 A {len(Notas)-1}): ")
+    if indice.isdig():
+        indice = int(indice)
+        if 0 <= indice < len(Notas):
+            eliminada = Notas.pop(indice)
+            print(f"!!!NOTA ELIMINADA CON EXITO!!!: {eliminada}")
+        else: 
+            print("ERROR: INDICE FUERA DE RANGO")
+    else: 
+        print("ERROR: EL INDICE DEBE DE SER UN VALOR NUEMRICO")
+
 
 #paso 1 registrar notas
 registrar_notas()
@@ -115,14 +136,44 @@ def menu():
         print("OPCIÒN 3. CALCULAR PROMEDIO GENERAL")
         print("OPCIÒN 4. CONTAR CURSOS APROBADOS Y REPROBADOS")
         #Aqui se hace la busqueda linal en buscar curso por nombre
-        print("OPCIÒN 5. BUSCAR CURSOS POR NOMBRE")   
+        print("OPCION 5. OPCIÒN 5. BUSCAR CURSOS POR NOMBRE")  
+        print("OPCION 6. ACTUALIZAR NOTA POR INDICE")
+        print("OPCION 7. ELIMINAR NOTA")
+        print("OPCION 8. SALIR")
+        opcion = input("seleccione una opc78FIion (1-7): ").strip()
 
+        if opcion == "1":
+            registrar_notas()
+        elif opcion == "2":
+            if Notas: 
+                print ("NOTAS REGISTRADAS (con indices): ")
+                for i, nota in enumerate(Notas):
+                    print (f"[{i}]-> {nota}")
+            else: 
+                print("NO HAY NOTAS REGISTRADAS")
+        elif opcion == "3": 
+            promedio = Calcular_promedio()
+            if promedio is None: 
+                print("NO SE PUEDE CALCULAR PROMEDIO PORQUE NO HAY NOTAS")
+            else:
+                print(f"PROMEDIO GENERAL: {promedio: .2F}")
+        elif opcion == "4":
+              Contar_Aprobadas_y_Reprobadas()
+        elif opcion == "5":
+             Buscar_nota()
+        elif opcion == "6": 
+            Actualizar_nota()
+        elif opcion == "7": 
+            Eliminar_nota()
+        elif opcion == "8":
+            print("GRACIAS POR USAR EL GESTOR DE NOTAS. HASTA PRONTO.")
+            break 
+        else: 
+            print("OPCION INVALIDA. INTENTE DE NUEVO (OPCION 1-8).").strip()
+
+
+menu()
     
-
-
-
-
-
 
 
 

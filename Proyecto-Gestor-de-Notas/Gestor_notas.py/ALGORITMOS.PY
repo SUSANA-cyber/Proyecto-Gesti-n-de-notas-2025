@@ -3,7 +3,9 @@ Notas = []
 #lista donde se guardan los cursos + las notas 
 #cada elemento de la lista es un diccionario por ejemplo curso: algoritmos, nota 77
 #un diccionario un diccionario almacena cualquier tipo de dato 
-cursos = []
+cursos = [] #lista principal donde se guardan cursos y notas 
+historial = [] #pila deonde se guardan los cambios actualizaciones, eliminacion y registro 
+
 #PROCEDIMIENTO
 
 # funcion registrar curso
@@ -14,7 +16,7 @@ cursos = []
 
 def registrar_cursos():
     while True:
-        nombre = input("INGRESE EL NOMBRE DEL CURSO QUE DECEA REGISTRAR (O ESCRIBA 'FIN' PARA TERMINAR): ").strip()
+        nombre = input("INGRESE EL NOMBRE DEL CURSO QUE DESEA REGISTRAR (O ESCRIBA 'FIN' PARA TERMINAR): ").strip()
         
         #si el usuario escribe FIN deja de registrar cursos
         if nombre.upper() == "FIN":
@@ -42,6 +44,9 @@ def registrar_cursos():
             continue
         #guarda cursos + notas en un diccionario
         cursos.append({"curso": nombre, "nota": nota})
+        # Aqui se agrega el curso al final de la lista historial 
+        historial.append(f"SE REGISTRO EL CURSO ´{nombre}´ con nota {nota}")
+
         print(f"curso '{nombre}' REGISTRADO CON EXITO!!!")
 
 #FUNCION MOSTRAR CURSO
@@ -113,7 +118,7 @@ def Buscar_curso():
 #valida que la nota nueva sea numerica y este dentro del rango establecido
 def Actualizar_nota():
     nombre = input("INGRESE EL NOMBRE DEL CURSO A ACTUALIZAR:  ").strip()
-
+    encontrado = False 
     for item in cursos: 
         #si encuentra el curso pide que ingrese la nota nueva
         if item["curso"].lower() == nombre.lower():
@@ -121,37 +126,47 @@ def Actualizar_nota():
             if nueva.isdigit():
                 nueva = int(nueva)
                 if 0 <= nueva <= 100:
+                #guarda la nota anterior y la registra en el historial
+                    anterior = item["nota"]
                     item["nota"] = nueva
-                    print("NOTA ACTUALIZADA CON EXITO")
+                    historial.append(f"SE ACTUALIZO: {item['curso']} - Nota anterior: {anterior} -> Nueva nota: {nueva}")
+                    print("NOTA ACTUALIZADA CON EXITO!!!")
+                    encontrado = True 
+                    break
+
                 else: 
                     print("ERROR: LA NOTA DEBE DE ESTAR ENTRE 0 Y 100")
+                    # sale si el dato es incorrecto
+                    return
             else: 
                 print("ERROR: LA NOTA DEBE DE SER UN DATO NUMERICO")
                 #sale de la funcion despues de actualizar las notas
                 return 
-    #si no se encuentra el nombre en la lista 
-    print("NO SE ENCOTRO NINGUN CURSO CON ESE NOMBRE")
+    if not encontrado: #si no se encuentra el nombre en la lista 
+        print("NO SE ENCOTRO NINGUN CURSO CON ESE NOMBRE")
 
-
-#FUNCION ELIMINAR CUERSO
+#FUNCION ELIMINAR CURSO
 #ELIMINA un curso por nombre antes de borrarlo pide confirmacion
 # si el usuario escribe SI lo elimina
 # si el usuario escribe NO se cancela
-
 def eliminar_curso():
     nombre = input("INGRESE EL NOMBRE DEL CURSO A ELIMINAR: ").strip()
-
+    encontrado = False 
     for i, item in enumerate(cursos): 
         if item["curso"].lower() == nombre.lower():
-            confirmar = input(f"ESTA SUGURO DE QUE QUIERE ELIMINAR ESTE CURSO '{item['curso']}' (SI/NO): ").strip().lower()
+            confirmar = input(f"ESTA SEGURO DE QUE QUIERE ELIMINAR ESTE CURSO '{item['curso']}' (SI/NO): ").strip().lower()
             if confirmar == "si": 
                 #se elimina el curso y la nota juntos
                 eliminado = cursos.pop(i) 
-                print(f"CURSO ELIMINADO CORRECTAMENTE")
+                historial.append(f"SE ELIMINO: {eliminado['curso']} - Nota: {eliminado['nota']}")
+                print("CURSO ELIMINADO CORRECTAMENTE")
+                encontrado = True
+                break
             else: 
                 print("ELIMINACION CANCELADA")
                 return 
-    print("NO SE ENCONTRO NINGUN CURSO CON ESE NOMBRE")
+    if not encontrado: 
+        print("NO SE ENCONTRO NINGUN CURSO CON ESE NOMBRE")
 
 #####  ALGORITMOS DE ORDENAMIENTO #######
 
@@ -162,7 +177,7 @@ def eliminar_curso():
 def ordenamiento_de_notas_burbuja():
     #se repite n-1 veces
     n = len(cursos)
-   #se repite n-1 veces
+    #se repite n-1 veces
     for i in range(n-1): 
         #compara cada par en cada pasada
         for j in range(n-1-i): 
@@ -224,11 +239,11 @@ def cola_revision():
             print("ERROR: EL NOMBRE NO PUEDE ESTAR VACIO")
             continue 
         #se agrega al final de la cola 
-        cola.append(nombre)
+        cola_revision.append(nombre)
     
     #recorre la cola 
     print("\nPROCESANDO SOLICITUD DE REVISION")
-    for curso in cola: 
+    for curso in cola_revision: 
         print(f"EL CURSO ´{curso}´ ESTA SIENDO REVISADO")
     
     print("TODAS LAS SOLICITUDES HAN SIDO ATENDIDAS")
@@ -250,7 +265,7 @@ def menu():
         print("7. ELIMINAR UN CURSO")
         print("8. ORDENAR CURSOS POR NOTA")
         print("9. ORDENAR CURSOS POR NOMBRE")
-        print("10. MOSTRAR HISTORIAL")
+        print("10. MOSTRAR HISTORIAL DE CAMBIOS")
         print("11. SOLICITAR REVISION")
         print("12. SALIR")
         opcion = input("SELECCIONE UNA OPCION DEL 1 AL 12: ").strip()

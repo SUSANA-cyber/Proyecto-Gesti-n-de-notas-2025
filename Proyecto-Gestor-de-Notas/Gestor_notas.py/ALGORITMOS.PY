@@ -151,9 +151,91 @@ def eliminar_curso():
             else: 
                 print("ELIMINACION CANCELADA")
                 return 
-print("NO SE ENCONTRO NINGUN CURSO CON ESE NOMBRE")
+    print("NO SE ENCONTRO NINGUN CURSO CON ESE NOMBRE")
 
-                  
+#####  ALGORITMOS DE ORDENAMIENTO #######
+
+## FUNCION ORDENAMIENTO BURBUJA 
+#Recorre toda la lista varias veces comparando pares de elemtos y los 
+# va intercambiando en orden descendente va a ordenar las notas de mayor a menor 
+
+def ordenamiento_de_notas_burbuja():
+    #se repite n-1 veces
+    n = len(cursos)
+   #se repite n-1 veces
+    for i in range(n-1): 
+        #compara cada par en cada pasada
+        for j in range(n-1-i): 
+            #intercambia se esta en el orden incorrecto
+            if  cursos[j]["nota"] < cursos [j+1]["nota"]: 
+                cursos[j], cursos[j+1] = cursos[j+1], cursos[j]
+    #muestra los resultados 
+    print ("CURSOS ORDENADOS POR NOTA")
+    for i, item in enumerate(cursos): 
+        print(f"{i+1}. {item['curso']} - Nota: {item['nota']}")
+
+
+#### FUNCION ORDENAMIENTO INSERCION 
+#recorre la lista y va insertando cada elemento en la pocision que le corresponde
+# va a ordenar por orden alfabetico segun el nombre ddel curso
+
+def ordenamiento_de_curso_insercion(): 
+    for i in range(1, len(cursos)): 
+        clave = cursos[i]
+        j = i - 1
+        #mientras el nombre del curso sea menor al anterior se corre 
+        while j >= 0 and clave ["curso"].lower() < cursos[j]["curso"].lower(): 
+            cursos[j+1] = cursos[j]
+            j -= 1
+        cursos[j+1] = clave 
+    #muestra resultados 
+    print("CURSOS ORDENADOS POR NOMBRE")
+    for i, item in enumerate(cursos): 
+        print(f"{i+1}. {item['curso']} - Nota: {item['nota']}")
+
+
+##### PILAS Y COLAS ######
+#Funcion pila
+#en historial=[] se van a guardar los cambios
+
+def mostrar_historial(): 
+    if not historial: 
+        print("HISTORIAL VACIO")
+    else: 
+        print("HISTORIAL DE CAMBIOS")
+        for i, evento in enumerate(reversed(historial), start=1): 
+            print(f"{i}. {evento}")
+
+
+#Funcion cola
+# cola revicion de cursos 
+#lista vacia se usa como cola
+def cola_revision():
+    cola_revision = []    
+
+    print("INGRESE LOS CURSOS QUE DESEA REVISAR")
+    print("ESCRIBA ´fin´ PARA TERMINAR.\n")
+
+    while True: 
+        nombre = input("CURSOS A REVISAR: ").strip()
+        if nombre.lower() == "fin": 
+            break
+        if nombre == "": 
+            print("ERROR: EL NOMBRE NO PUEDE ESTAR VACIO")
+            continue 
+        #se agrega al final de la cola 
+        cola.append(nombre)
+    
+    #recorre la cola 
+    print("\nPROCESANDO SOLICITUD DE REVISION")
+    for curso in cola: 
+        print(f"EL CURSO ´{curso}´ ESTA SIENDO REVISADO")
+    
+    print("TODAS LAS SOLICITUDES HAN SIDO ATENDIDAS")
+
+
+
+      
 ###    MENU PRINCIPAL (MENU DE INICIO)
 def menu(): 
     while True:
@@ -166,8 +248,12 @@ def menu():
         print("5. BUSCAR CURSOS POR NOMBRE")  
         print("6. ACTUALIZAR NOTA DE UN CURSO")
         print("7. ELIMINAR UN CURSO")
-        print("8. SALIR")
-        opcion = input("SELECCIONE UNA OPCION DEL 1 AL 8: ").strip()
+        print("8. ORDENAR CURSOS POR NOTA")
+        print("9. ORDENAR CURSOS POR NOMBRE")
+        print("10. MOSTRAR HISTORIAL")
+        print("11. SOLICITAR REVISION")
+        print("12. SALIR")
+        opcion = input("SELECCIONE UNA OPCION DEL 1 AL 12: ").strip()
 
         if opcion == "1":
             registrar_cursos()
@@ -187,11 +273,20 @@ def menu():
             Actualizar_nota()
         elif opcion == "7":
             eliminar_curso()
-        elif opcion == "8":
-            print("GRACIAS POR USAR EL GESTOR DE NOTAS. ¡HASTA PRONTO!")
+        elif opcion == "8": 
+            ordenamiento_de_notas_burbuja()
+        elif opcion == "9":
+            ordenamiento_de_curso_insercion()
+        elif opcion == "10":
+            mostrar_historial()
+        elif opcion == "11":
+            cola_revision()
+        elif opcion == "12": 
+            print("GRACIAS POR USAR EL GESTOR DE NOTAS")
+            print("HASTA PRONTO")
             break
         else: 
-            print("OPCION INVALIDA INTENTE DE NUEVO CON UN NUEMRO DEL 1 AL 8.")
+            print("OPCION INVALIDA ENTENTE DE NUEVO CON OTRO NUMERO DEL 1 AL 12")
 
 
 

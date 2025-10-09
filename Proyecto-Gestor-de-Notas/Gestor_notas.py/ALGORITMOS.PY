@@ -1,8 +1,6 @@
-Notas = []
-
 #lista donde se guardan los cursos + las notas 
 #cada elemento de la lista es un diccionario por ejemplo curso: algoritmos, nota 77
-#un diccionario un diccionario almacena cualquier tipo de dato 
+#un diccionario almacena cualquier tipo de dato 
 cursos = [] #lista principal donde se guardan cursos y notas 
 historial = [] #pila deonde se guardan los cambios actualizaciones, eliminacion y registro 
 
@@ -16,7 +14,7 @@ historial = [] #pila deonde se guardan los cambios actualizaciones, eliminacion 
 
 def registrar_cursos():
     while True:
-        nombre = input("INGRESE EL NOMBRE DEL CURSO QUE DESEA REGISTRAR (O ESCRIBA 'FIN' PARA TERMINAR): ").strip()
+        nombre = input("\nINGRESE EL NOMBRE DEL CURSO QUE DESEA REGISTRAR (O ESCRIBA 'FIN' PARA TERMINAR): ").strip()
         
         #si el usuario escribe FIN deja de registrar cursos
         if nombre.upper() == "FIN":
@@ -25,7 +23,7 @@ def registrar_cursos():
         #validaciones el nombre no puede estar vacio
 
         if nombre == "":
-            print("ERROR: EL NOMBRE NO PUEDE ESTAR VACIO")
+            print("ERROR EL NOMBRE NO PUEDE ESTAR VACIO")
             continue
         #pediomos la nota
 
@@ -34,20 +32,20 @@ def registrar_cursos():
         #la nota debe ser numerica
 
         if not nota.isdigit():
-            print("Error: solo se permite ingresar valores numericos")
+            print("ERROR SOLO SE PERMITE INGRESAR VALORES NUMERICOS")
             continue
         #convierte la nota en numeros enteros
         nota = int (nota)
 
         if nota < 0 or nota > 100:
-            print("Error: la nota debe de estar dentro del rango de 0 A 100 ")
+            print("ERROR LA NOTA DEBE DE ESTAR DENTRO DEL RANGO DE 0 A 100 ")
             continue
         #guarda cursos + notas en un diccionario
         cursos.append({"curso": nombre, "nota": nota})
         # Aqui se agrega el curso al final de la lista historial 
-        historial.append(f"SE REGISTRO EL CURSO ´{nombre}´ con nota {nota}")
+        historial.append(f"SE REGISTRO EL CURSO ´{nombre}´ CON NOTA {nota}")
 
-        print(f"curso '{nombre}' REGISTRADO CON EXITO!!!")
+        print(f"curso '{nombre}' ¡REGISTRADO CON EXITO!")
 
 #FUNCION MOSTRAR CURSO
 #recorre la lista de cursos y muestra el nombre del curso y la nota
@@ -55,12 +53,12 @@ def registrar_cursos():
 
 def mostrar_curso():
     if cursos: 
-        print("CURSOS REGISTRADOS (CON INDICE): ")
+        print("\nCURSOS REGISTRADOS (CON INDICE): ")
         #enumera da indice + el elemento
         for i, item in enumerate(cursos):
             print(f"[{i}] -> {item['curso']} - Notas: {item['nota']}") 
     else: 
-        print("LO SIENTO NO HAY CURSOS REGISTRADOS.")
+        print("LO SIENTO NO HAY CURSOS REGISTRADOS PARA MOSTRAR.")
 
 #FUNCION CALCULAR PROMEDIO
 # Retrona el promedio de todas las notas registradas en la lista 
@@ -68,9 +66,13 @@ def mostrar_curso():
         
 def Calcular_promedio(): 
     if len(cursos) == 0:
-       return None 
-    #aqui recorre todos los cursos y suma sus notas 
-    return sum(item["nota"] for item in cursos) / len(cursos)
+        print("NO SE PUEDE CALCULAR PROMEDIO PORQUE NO HAY CURSOS REGISTRADOS")
+        return  
+    #aqui recorre todos los cursos suma sus notas y las divide entre la cantidad total de cursos
+    promedio = sum(item["nota"] for item in cursos) / len(cursos)
+
+    #muestra el resultado con 2 decimales
+    print(f"\nPROMEDIO GENERAL:{promedio: .2f}\n")
         
 
 #PROCEDIMIENTO
@@ -81,16 +83,16 @@ def Calcular_promedio():
 def Contar_Aprobadas_y_Reprobadas():
     Aprobadas = sum(1 for item in cursos if item["nota"] >= 60)
     Reprobadas = len(cursos) - Aprobadas  
-    print (f"Cursos aprobados: {Aprobadas}")
-    print(f"Cursos reprobados: {Reprobadas}")
+    print (f"\nCURSOS APROBADOS: {Aprobadas}")
+    print(f"CURSOS REPROBADOS: {Reprobadas}")
 
-#PROCEDIMIENTO BUSCAR NOTA LINEAL
+#PROCEDIMIENTO BUSCAR curso LINEAL
 #AQUI SE USA LA BUSQUEDA LINEAL EN LA LISTA CURSOS
 # LE PIDE AL USUARIO UN NOMBRE DE CURSO Y BUSCA COINCIDENCIAS
 #SI ESCRIBE ALGO ENCUENTRA ALGORITMOS
             
 def Buscar_curso():
-    nombre = input ("INGRESE EL NOMBRE DEL CURSO QUE BUSCA: ").strip().lower()
+    nombre = input ("\nINGRESE EL NOMBRE DEL CURSO QUE BUSCA: ").strip().lower()
     #VALIDACION si el usuario no ingreso nada avisamos y sale 
     if nombre == "":
         print("DEBE DE INGRESAR UN NOMBRE PARA REALIZAR LA BUSQUEDA.")
@@ -117,7 +119,7 @@ def Buscar_curso():
 # busca un curso por nombre y permite modificarle la nota
 #valida que la nota nueva sea numerica y este dentro del rango establecido
 def Actualizar_nota():
-    nombre = input("INGRESE EL NOMBRE DEL CURSO A ACTUALIZAR:  ").strip()
+    nombre = input("\nINGRESE EL NOMBRE DEL CURSO A ACTUALIZAR:  ").strip()
     encontrado = False 
     for item in cursos: 
         #si encuentra el curso pide que ingrese la nota nueva
@@ -129,7 +131,7 @@ def Actualizar_nota():
                 #guarda la nota anterior y la registra en el historial
                     anterior = item["nota"]
                     item["nota"] = nueva
-                    historial.append(f"SE ACTUALIZO: {item['curso']} - Nota anterior: {anterior} -> Nueva nota: {nueva}")
+                    historial.append(f"SE ACTUALIZO: {item['curso']} - Nota ANTERIOR: {anterior} NOTA NUEVA: {nueva}")
                     print("NOTA ACTUALIZADA CON EXITO!!!")
                     encontrado = True 
                     break
@@ -150,7 +152,7 @@ def Actualizar_nota():
 # si el usuario escribe SI lo elimina
 # si el usuario escribe NO se cancela
 def eliminar_curso():
-    nombre = input("INGRESE EL NOMBRE DEL CURSO A ELIMINAR: ").strip()
+    nombre = input("\nINGRESE EL NOMBRE DEL CURSO A ELIMINAR: ").strip()
     encontrado = False 
     for i, item in enumerate(cursos): 
         if item["curso"].lower() == nombre.lower():
@@ -185,7 +187,7 @@ def ordenamiento_de_notas_burbuja():
             if  cursos[j]["nota"] < cursos [j+1]["nota"]: 
                 cursos[j], cursos[j+1] = cursos[j+1], cursos[j]
     #muestra los resultados 
-    print ("CURSOS ORDENADOS POR NOTA")
+    print ("\nCURSOS ORDENADOS POR NOTA")
     for i, item in enumerate(cursos): 
         print(f"{i+1}. {item['curso']} - Nota: {item['nota']}")
 
@@ -204,9 +206,58 @@ def ordenamiento_de_curso_insercion():
             j -= 1
         cursos[j+1] = clave 
     #muestra resultados 
-    print("CURSOS ORDENADOS POR NOMBRE")
+    print("\nCURSOS ORDENADOS POR NOMBRE")
     for i, item in enumerate(cursos): 
         print(f"{i+1}. {item['curso']} - Nota: {item['nota']}")
+
+### FUCION busqueda binaria dentro de la lsita cursos
+def busqueda_binaria(): 
+    #verifica si la lista tiene cursos registrados 
+    if not cursos: 
+        print("NO HAY CURSOS REGISTRADOS")
+        return 
+    #se conviente la letras en minusculas debe de estar alfabeticamente ordenada por nombre
+    cursos.sort(key=lambda x: x["curso"].lower())
+    nombre = input("\nINGRESE EL NOMBRE DEL CURSO A BUSCAR: ").strip().lower()
+    #validacion para que el usurio ingrese algun dato
+    if nombre == "": 
+        print("DEBE INGRESAR UN NOMBRE")
+        return 
+    
+    #define las posicion inicial y final de la busqueda primer elemento 0 ultimo -1
+    inicio = 0
+    fin = len(cursos) -1
+
+    #variable booleana para saber si el curso fue encontrado 
+    encontrado = False
+    #ciclo mientras el rango de busqueda sea valido inicio <= fin 
+    
+    while inicio <= fin:
+        #calcula el punto medio del rango actual 
+        medio =(inicio + fin) //2
+
+        #se conveirte en minusculas para hacer la comparacion sin importar mayusculas
+        curso_actual = cursos[medio]["curso"].lower()
+
+        #si el curso en la posicion media coincide con el nombre buscad muetra el resultado 
+
+        if curso_actual == nombre: 
+            print(f"CURSO ENCONTRADO: {cursos[medio]['curso']} - Nota: {cursos[medio]['nota']}\n")
+
+            encontrado = True 
+            break
+
+        #si el curso esta antes del que se esta buscando se busca en la mitad derecha de la lista
+        elif curso_actual < nombre: 
+            inicio = medio + 1
+
+        #curso actual es mayor al buscado se busca en la mitad izquierda de la lista
+        
+        else: 
+            fin = medio -1
+            
+    if not encontrado: 
+        print("NO SE ENCONTRO NINGUN CURSO CON ESE NOMBRE LO SIENTO")
 
 
 ##### PILAS Y COLAS ######
@@ -217,7 +268,7 @@ def mostrar_historial():
     if not historial: 
         print("HISTORIAL VACIO")
     else: 
-        print("HISTORIAL DE CAMBIOS")
+        print("\nHISTORIAL DE CAMBIOS")
         for i, evento in enumerate(reversed(historial), start=1): 
             print(f"{i}. {evento}")
 
@@ -228,13 +279,13 @@ def mostrar_historial():
 def cola_revision():
     cola_revision = []    
 
-    print("INGRESE LOS CURSOS QUE DESEA REVISAR")
-    print("ESCRIBA ´fin´ PARA TERMINAR.\n")
+    print("\nINGRESE LOS CURSOS QUE DESEA REVISAR")
+    print("ESCRIBA 'fin' PARA TERMINAR.\n")
 
     while True: 
         nombre = input("CURSOS A REVISAR: ").strip()
         if nombre.lower() == "fin": 
-            break
+            break 
         if nombre == "": 
             print("ERROR: EL NOMBRE NO PUEDE ESTAR VACIO")
             continue 
@@ -248,27 +299,30 @@ def cola_revision():
     
     print("TODAS LAS SOLICITUDES HAN SIDO ATENDIDAS")
 
-
+# Bienvenida al usuario (procedimento)
+def bienvenida_al_usuario():
+    nombre = input("POR FAVOR INGRESE SU NOMBRE: ").strip().title()
+    print(f"\n¡BUEN DIA! {nombre} BIENVENIDO AL PROGRAMA")
 
       
 ###    MENU PRINCIPAL (MENU DE INICIO)
 def menu(): 
     while True:
-        print("=====GESTOR DE NOTAS ACADEMICAS 2025=====")
+        print("\n=====GESTOR DE NOTAS ACADEMICAS 2025=====")
         print("1. REGISTRAR NUEVO CURSO")
         print("2. MOSTRAR TODOS LOS CURSOS Y NOTAS")  
         print("3. CALCULAR PROMEDIO GENERAL")
         print("4. CONTAR CURSOS APROBADOS Y REPROBADOS")
-        #Aqui se hace la busqueda linal en buscar curso por nombre
-        print("5. BUSCAR CURSOS POR NOMBRE")  
+        print("5. BUSCAR CURSOS POR NOMBRE BUSQUEDA LINEAL")  
         print("6. ACTUALIZAR NOTA DE UN CURSO")
         print("7. ELIMINAR UN CURSO")
         print("8. ORDENAR CURSOS POR NOTA")
         print("9. ORDENAR CURSOS POR NOMBRE")
-        print("10. MOSTRAR HISTORIAL DE CAMBIOS")
-        print("11. SOLICITAR REVISION")
-        print("12. SALIR")
-        opcion = input("SELECCIONE UNA OPCION DEL 1 AL 12: ").strip()
+        print("10. BUSCAR CURSOS POR NOMBRE BUSQUEDA BINARIA")
+        print("11. MOSTRAR HISTORIAL DE CAMBIOS")
+        print("12. SOLICITAR REVISION")
+        print("13. SALIR")
+        opcion = input("\nSELECCIONE UNA OPCION DEL 1 AL 13: ")
 
         if opcion == "1":
             registrar_cursos()
@@ -276,10 +330,6 @@ def menu():
             mostrar_curso()
         elif opcion == "3":
             promedio = Calcular_promedio()      
-            if promedio is None: 
-                print("NO SE PUEDE CALCULAR PROMEDIO PORQUE NO HAY CURSOS REGISTRADOS.")
-            else:
-                print(f"POMEDIO GENERAL: {promedio: .2f}")
         elif opcion == "4": 
             Contar_Aprobadas_y_Reprobadas()
         elif opcion == "5":
@@ -292,27 +342,21 @@ def menu():
             ordenamiento_de_notas_burbuja()
         elif opcion == "9":
             ordenamiento_de_curso_insercion()
-        elif opcion == "10":
-            mostrar_historial()
+        elif opcion == "10": 
+            busqueda_binaria()
         elif opcion == "11":
+            mostrar_historial()
+        elif opcion == "12":
             cola_revision()
-        elif opcion == "12": 
-            print("GRACIAS POR USAR EL GESTOR DE NOTAS")
-            print("HASTA PRONTO")
+        elif opcion == "13": 
+            print("!!GRACIAS POR USAR EL GESTOR DE NOTAS ADEMICAS HASTA PRONTO¡¡")
             break
         else: 
-            print("OPCION INVALIDA ENTENTE DE NUEVO CON OTRO NUMERO DEL 1 AL 12")
+            print("\nOPCION INVALIDA INTENTE DE NUEVO CON OTRO NUMERO DEL 1 AL 13")
 
 
 
 # AQUI INICIA EL PROGRAMA 
 # LLAMAMOS AL MENU PRINCIPAL
+bienvenida_al_usuario()
 menu()
-
-
-
-
-
-
-
-           

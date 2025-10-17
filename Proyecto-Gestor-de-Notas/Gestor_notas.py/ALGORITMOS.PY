@@ -26,6 +26,8 @@ def registrar_cursos():
             print("ERROR EL NOMBRE NO PUEDE ESTAR VACIO")
             continue
         #pediomos la nota
+        #se normaliza el nombre mayusculas 
+        nombre = nombre.title()
 
         nota = input("INGRESE LA NOTA DEL CURSO (0 A 100): ").strip()
         
@@ -156,7 +158,7 @@ def eliminar_curso():
     encontrado = False 
     for i, item in enumerate(cursos): 
         if item["curso"].lower() == nombre.lower():
-            confirmar = input(f"ESTA SEGURO DE QUE QUIERE ELIMINAR ESTE CURSO '{item['curso']}' (SI/NO): ").strip().lower()
+            confirmar = input(f"ESTA SEGURO DE QUE QUIERE ELIMINAR  CURSO '{item['curso']}' (SI/NO): ").strip().lower()
             if confirmar == "si": 
                 #se elimina el curso y la nota juntos
                 eliminado = cursos.pop(i) 

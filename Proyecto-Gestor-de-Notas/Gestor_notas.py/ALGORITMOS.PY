@@ -43,9 +43,9 @@ def registrar_cursos():
         #guarda cursos + notas en un diccionario
         cursos.append({"curso": nombre, "nota": nota})
         # Aqui se agrega el curso al final de la lista historial 
-        historial.append(f"SE REGISTRO EL CURSO ´{nombre}´ CON NOTA {nota}")
+        historial.append(f"SE REGISTRO EL CURSO '{nombre}' CON NOTA {nota}")
 
-        print(f"curso '{nombre}' ¡REGISTRADO CON EXITO!")
+        print(f"CURSO '{nombre}' ¡REGISTRADO CON EXITO!")
 
 #FUNCION MOSTRAR CURSO
 #recorre la lista de cursos y muestra el nombre del curso y la nota
@@ -132,7 +132,7 @@ def Actualizar_nota():
                     anterior = item["nota"]
                     item["nota"] = nueva
                     historial.append(f"SE ACTUALIZO: {item['curso']} - Nota ANTERIOR: {anterior} NOTA NUEVA: {nueva}")
-                    print("NOTA ACTUALIZADA CON EXITO!!!")
+                    print("¡NOTA ACTUALIZADA CON EXITO!")
                     encontrado = True 
                     break
 
@@ -295,7 +295,7 @@ def cola_revision():
     #recorre la cola 
     print("\nPROCESANDO SOLICITUD DE REVISION")
     for curso in cola_revision: 
-        print(f"EL CURSO ´{curso}´ ESTA SIENDO REVISADO")
+        print(f"EL CURSO '{curso}' ESTA SIENDO REVISADO")
     
     print("TODAS LAS SOLICITUDES HAN SIDO ATENDIDAS")
 
@@ -304,12 +304,12 @@ def bienvenida_al_usuario():
     nombre = input("POR FAVOR INGRESE SU NOMBRE: ").strip().title()
     print(f"\n¡BUEN DIA! {nombre} BIENVENIDO AL PROGRAMA")
 
-      
+
 ###    MENU PRINCIPAL (MENU DE INICIO)
 def menu(): 
     while True:
-        print("\n=====GESTOR DE NOTAS ACADEMICAS 2025=====")
-        print("1. REGISTRAR NUEVO CURSO")
+        print("\n===== GESTOR DE NOTAS ACADEMICAS 2025 =====")
+        print("\n1. REGISTRAR NUEVO CURSO")
         print("2. MOSTRAR TODOS LOS CURSOS Y NOTAS")  
         print("3. CALCULAR PROMEDIO GENERAL")
         print("4. CONTAR CURSOS APROBADOS Y REPROBADOS")
@@ -349,7 +349,7 @@ def menu():
         elif opcion == "12":
             cola_revision()
         elif opcion == "13": 
-            print("!!GRACIAS POR USAR EL GESTOR DE NOTAS ADEMICAS HASTA PRONTO¡¡")
+            print("\n¡GRACIAS POR USAR EL GESTOR DE NOTAS ACADEMICAS HASTA PRONTO!")
             break
         else: 
             print("\nOPCION INVALIDA INTENTE DE NUEVO CON OTRO NUMERO DEL 1 AL 13")

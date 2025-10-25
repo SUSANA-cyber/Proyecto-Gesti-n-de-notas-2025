@@ -2,8 +2,7 @@ Avance de Proyecto 02 - Registro y visualización de notas, cálculo de promedio
 
 
 INICIO
-
-Notas <- []
+cursos <- []
 
 IMPRIMIR "ingrese una nota"
 

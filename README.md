@@ -106,7 +106,8 @@ FIN
 
 
 
-                                                                        ======REFLEXION=====
+                                          
+                                                         ======REFLEXION=====
                                                                         
 Aprendi que Python es un lenguaje de programación estructurado y muy flexible, que permite organizar las tareas de manera clara y mas sencilla usando funciones y proecedimientos. 
 

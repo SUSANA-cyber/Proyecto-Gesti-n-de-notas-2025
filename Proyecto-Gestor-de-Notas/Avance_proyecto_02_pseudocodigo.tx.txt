@@ -1,93 +1,200 @@
 Avance de Proyecto 02 - Registro y visualización de notas, cálculo de promedio
 
 
+Pseudocódigo
+
 INICIO
-cursos <- []
 
-IMPRIMIR "ingrese una nota"
+cursos ← []
+historial ← []
 
-MINETRAS VERDADERO HACER 
-IMPRIMIR "Ingrese una nota"
-LEER ENTRADA
+IMPRIMIR "GESTOR DE NOTAS ACADÉMICAS 2025"
+IMPRIMIR "Ingrese su nombre:"
+LEER nombre_usuario
+IMPRIMIR "Bienvenido", nombre_usuario
 
-SI ENTRADA = "FIN" ENTONCES 
+MIENTRAS VERDADERO HACER
+    IMPRIMIR "1 Registrar curso"
+    IMPRIMIR "2 Mostrar cursos y notas"
+    IMPRIMIR "3 Calcular promedio general"
+    IMPRIMIR "4 Contar aprobados y reprobados"
+    IMPRIMIR "5 Buscar curso (lineal)"
+    IMPRIMIR "6 Actualizar nota"
+    IMPRIMIR "7 Eliminar curso"
+    IMPRIMIR "8 Ordenar por nota (burbuja)"
+    IMPRIMIR "9 Ordenar por nombre (inserción)"
+    IMPRIMIR "10 Buscar curso (binaria)"
+    IMPRIMIR "11 Mostrar historial"
+    IMPRIMIR "12 Solicitar revisión"
+    IMPRIMIR "13 Salir"
 
-SALIR DEL CICLO
+    LEER opcion
 
-FIN SI
+    SI opcion = 1 ENTONCES
+        MIENTRAS VERDADERO HACER
+            IMPRIMIR "Ingrese nombre del curso (o 'FIN' para terminar)"
+            LEER nombre
+            SI nombre = "FIN" ENTONCES
+                SALIR DEL CICLO
+            FIN SI
+            SI nombre = "" ENTONCES
+                IMPRIMIR "Error: nombre vacío"
+                CONTINUAR
+            FIN SI
+            IMPRIMIR "Ingrese nota (0-100)"
+            LEER nota
+            SI nota no es numérica ENTONCES
+                IMPRIMIR "Error: valor no numérico"
+                CONTINUAR
+            FIN SI
+            SI nota < 0 O nota > 100 ENTONCES
+                IMPRIMIR "Error: nota fuera de rango"
+                CONTINUAR
+            FIN SI
+            AGREGAR {"curso": nombre, "nota": nota} A cursos
+            AGREGAR "Registro: nombre - nota" A historial
+            IMPRIMIR "Curso registrado"
+        FIN MIENTRAS
+    FIN SI
 
-SI ENTRADA esta vacia ENTONCES 
+    SI opcion = 2 ENTONCES
+        SI cursos está vacío ENTONCES
+            IMPRIMIR "No hay cursos"
+        SINO
+            PARA cada c EN cursos HACER
+                IMPRIMIR c.curso, "-", c.nota
+            FIN PARA
+        FIN SI
+    FIN SI
 
-IMPRIMIR "Error la nota no puede estar vacia"
+    SI opcion = 3 ENTONCES
+        SI cursos está vacío ENTONCES
+            IMPRIMIR "No se puede calcular promedio"
+        SINO
+            suma ← 0
+            PARA cada c EN cursos HACER
+                suma ← suma + c.nota
+            FIN PARA
+            promedio ← suma / cantidad(cursos)
+            IMPRIMIR "Promedio general:", promedio
+        FIN SI
+    FIN SI
 
-CONTUANAR 
+    SI opcion = 4 ENTONCES
+        aprobadas ← contar c EN cursos donde c.nota ≥ 60
+        reprobadas ← cantidad(cursos) - aprobadas
+        IMPRIMIR "Aprobadas:", aprobadas, "Reprobadas:", reprobadas
+    FIN SI
 
-FIN SI
+    SI opcion = 5 ENTONCES
+        IMPRIMIR "Ingrese nombre a buscar"
+        LEER nombre
+        encontrado ← FALSO
+        PARA cada c EN cursos HACER
+            SI nombre está contenido en c.curso ENTONCES
+                IMPRIMIR "Encontrado:", c.curso, c.nota
+                encontrado ← VERDADERO
+            FIN SI
+        FIN PARA
+        SI no encontrado ENTONCES
+            IMPRIMIR "No encontrado"
+        FIN SI
+    FIN SI
 
-SI tipo (entrada) != Numerico ENTONCES 
+    SI opcion = 6 ENTONCES
+        IMPRIMIR "Ingrese curso a actualizar"
+        LEER nombre
+        encontrado ← FALSO
+        PARA cada c EN cursos HACER
+            SI c.curso = nombre ENTONCES
+                IMPRIMIR "Ingrese nueva nota"
+                LEER nueva
+                VALIDAR nueva es numérica y 0-100
+                anterior ← c.nota
+                c.nota ← nueva
+                AGREGAR "Actualización: c.curso anterior-anterior nueva-nueva" A historial
+                IMPRIMIR "Nota actualizada"
+                encontrado ← VERDADERO
+                SALIR
+            FIN SI
+        FIN PARA
+        SI no encontrado ENTONCES
+            IMPRIMIR "Curso no encontrado"
+        FIN SI
+    FIN SI
 
-IMPRIMIR "Error solo se aceptan valores numericos"
+    SI opcion = 7 ENTONCES
+        IMPRIMIR "Ingrese curso a eliminar"
+        LEER nombre
+        encontrado ← FALSO
+        PARA i EN rango longitud(cursos) HACER
+            SI cursos[i].curso = nombre ENTONCES
+                IMPRIMIR "Confirmar eliminación (SI/NO)"
+                LEER confirmar
+                SI confirmar = "SI" ENTONCES
+                    ELIMINAR cursos[i]
+                    AGREGAR "Eliminado: nombre" A historial
+                    IMPRIMIR "Eliminado"
+                    encontrado ← VERDADERO
+                    SALIR
+                SINO
+                    IMPRIMIR "Cancelado"
+                    SALIR
+                FIN SI
+            FIN SI
+        FIN PARA
+        SI no encontrado ENTONCES
+            IMPRIMIR "Curso no encontrado"
+        FIN SI
+    FIN SI
 
-CONTINUAR
+    SI opcion = 8 ENTONCES
+        APLICAR ordenamiento burbuja sobre cursos por campo nota 
+        IMPRIMIR lista ordenada
+    FIN SI
 
-FIN SI 
+    SI opcion = 9 ENTONCES
+        APLICAR ordenamiento por inserción sobre cursos por campo curso 
+        IMPRIMIR lista ordenada
+    FIN SI
 
-SI nota < 0 o nota > 100 ENTONCES
+    SI opcion = 10 ENTONCES
+        ORDENAR cursos por nombre
+        LEER nombre
+        APLICAR búsqueda binaria sobre cursos
+        SI encontrado IMPRIMIR datos SINO IMPRIMIR "No encontrado"
+    FIN SI
 
-IMPRIMIR "Error la nota debe estar entre 0 y 100"
+    SI opcion = 11 ENTONCES
+        SI historial está vacío ENTONCES
+            IMPRIMIR "Historial vacío"
+        SINO
+            IMPRIMIR "Historial (más reciente primero)"
+            PARA cada evento EN historial invertido HACER
+                IMPRIMIR evento
+            FIN PARA
+        FIN SI
+    FIN SI
 
-CONTINUAR
+    SI opcion = 12 ENTONCES
+        cola_revision ← []
+        IMPRIMIR "Ingrese cursos a revisar ('FIN' para terminar)"
+        MIENTRAS VERDADERO HACER
+            LEER nombre
+            SI nombre = "FIN" ENTONCES SALIR FIN SI
+            SI nombre = "" ENTONCES IMPRIMIR "Error" CONTINUAR FIN SI
+            AGREGAR nombre A cola_revision
+        FIN MIENTRAS
+        PARA cada  EN cola_revision HACER
+            IMPRIMIR "Revisando:"
+        FIN PARA
+    FIN SI
 
-FIN SI
-
-AGREGAR nota a nota 
-
-IMPRIMIR "Nota registrada con exito"
+    SI opcion = 13 ENTONCES
+        IMPRIMIR "Gracias por usar el gestor de notas academicas. Fin del programa"
+        SALIR
+    FIN SI
 
 FIN MIENTRAS
 
-
-SI cantidad de elementos en notas = 0 ENTONCES 
-
-IMPRIMIR "No se registraron notas. no es posible calcular promedio"
-
-SINO 
-
-suma <- 0
-PARA cada nota en notas HACER
-suma <- suma + nota 
-
-FIN PARA
-
-PROMEDIO <- suma / cantidad de elementos en notas 
-
-IMPRIMIR "El promedio de las notas es ", PROMEDIO
-
-FIN SI 
-
 FIN
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
